@@ -5,7 +5,9 @@
   },
   "dependencies": {
     "bulma-fluent": "^0.3.17",
-    "vue": "^2.6.10"
+    "iview": "^3.4.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6"
   },
   "description": "stock observer",
   "devDependencies": {
