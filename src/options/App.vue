@@ -5,13 +5,13 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      msg: 'option page app!'
+  export default {
+    data() {
+      return {
+        msg: 'option page app!'
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus">
