@@ -12,7 +12,7 @@ const PurgecssPlugin = require('purgecss-webpack-plugin')
 
 const isDevMode = process.env.NODE_ENV === 'development'
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -51,6 +51,10 @@ const config = {
           'css-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader",
       },
       {
         test: /\.sass$/,
@@ -96,8 +100,8 @@ const config = {
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      { from: 'assets', to: 'assets' },
-      { from: 'manifest.json', to: 'manifest.json', flatten: true },
+      {from: 'assets', to: 'assets'},
+      {from: 'manifest.json', to: 'manifest.json', flatten: true},
     ]),
     new HtmlWebpackPlugin({
       title: 'Options',
