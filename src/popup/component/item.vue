@@ -27,7 +27,8 @@
 </template>
 
 <script>
-  import { getQuery } from './util'
+  import {getQuery} from './util'
+
   export default {
     name: 'Item',
     props: {
@@ -50,13 +51,13 @@
         })
       }
     },
-    data () {
+    data() {
       return {
         avatar: getQuery('avatar') !== null
       }
     },
     computed: {
-      itemStyle () {
+      itemStyle() {
         return {
           'height': `${this.height}px`,
           'line-height': `${this.height}px`
@@ -64,8 +65,7 @@
       }
     },
     methods: {
-      getAbbrName (name) {
-        console.log("getAbbrName:" + name)
+      getAbbrName(name) {
         if (!name) {
           return ''
         }
@@ -96,6 +96,7 @@
       flex: 1;
       text-align: center;
     }
+
     .card {
       position: relative;
       flex: 4;
@@ -105,6 +106,7 @@
       @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
         border-bottom: 0.5px solid #cccccc;
       }
+
       &-avatar {
         width: 40px;
         height: 40px;
@@ -113,10 +115,12 @@
         border-radius: 50%;
         text-align: center;
         line-height: 40px;
+
         &.no-avatar {
           background: #ff6347;
           color: #ffffff;
         }
+
         &-img {
           display: block;
           width: 100%;
@@ -124,6 +128,7 @@
           border-radius: 50%;
         }
       }
+
       &-info {
         display: flex;
         flex-direction: column;
@@ -132,6 +137,7 @@
         @media (max-width: 640px) {
           padding-left: 20px;
         }
+
         &-item {
           flex: 1;
           height: 50%;
@@ -144,15 +150,18 @@
           @media (max-width: 640px) {
             max-width: 180px;
           }
+
           &.name {
             padding-bottom: 3px;
           }
+
           &.time {
             padding-top: 3px;
             color: #a9a9a9;
           }
         }
       }
+
       &-height {
         position: absolute;
         right: 30px;
