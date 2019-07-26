@@ -6,7 +6,8 @@
     <div class="card">
       <div class="card-avatar"
            :class="{'no-avatar': !avatar}"
-           :style="{'background-color': !avatar && info.color}">
+           :style="{'background-color': !avatar && info.color}"
+      >
         <span v-if="!avatar">{{ getAbbrName(info.name) }}</span>
         <img v-else class="card-avatar-img" :src="info.avatar" alt="AVATAR">
       </div>
@@ -65,6 +66,10 @@
     },
     methods: {
       getAbbrName(name) {
+        if (!name) {
+          return ''
+        }
+
         const arr = name.split(' ')
         if (arr.length > 1) {
           return arr[0][0] + arr[1][0]
@@ -84,7 +89,9 @@
       -webkit-user-select: none;
       user-select: none;
     }
-
+    // &:hover {
+    //     background-color: #f0f8ff;
+    // }
     .index {
       flex: 1;
       text-align: center;
