@@ -1,6 +1,6 @@
 <template>
   <div class="popup-style">
-    <el-tabs v-model="activeTabs" type="card" @tab-click="handleClick">
+    <el-tabs v-model="activeTabs" @tab-click="handleClick">
       <el-tab-pane label="我的自选" name="iChoice">
         <virtual-list
           :size="itemSize"
