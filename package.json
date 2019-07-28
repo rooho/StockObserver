@@ -4,6 +4,7 @@
     "name": "rooho"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "bulma-fluent": "^0.3.17",
     "element-ui": "^2.11.0",
     "less": "^3.9.0",

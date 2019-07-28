@@ -1,6 +1,7 @@
 <template>
   <div class="popup-style">
-    <el-tabs v-model="activeTabs" @tab-click="handleClick">
+    <el-button @click="defClick">Default</el-button>
+    <el-tabs class="el_tabs" v-model="activeTabs" :tab-position="tabPosition" @tab-click="handleClick">
       <el-tab-pane label="我的自选" name="iChoice">
         <virtual-list
           :size="itemSize"
@@ -14,22 +15,41 @@
       </el-tab-pane>
       <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
       <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
 import stock_item from '../component/item'
-import virtualList from 'vue-virtual-scroll-list'
+import virtualList from 'vue-virtual-scroll-list' 
 import { countStorage, getRandomUser } from '../component/util'
 
+import {
+	getStockByCode,
+	getStockBySuggest,
+	getStockTrade,
+	getAnnouncement
+} from '../../api/sina';
+
+import {
+	checkAllow,
+	getRightShock,
+	getColWidth,
+	getFixedNum,
+	MIN_STOCKWIDTH_WITH_SET
+} from '../../api/base';
+
+import {
+	getSuggestList,
+	getStockDetail,
+	getStockTradeDetail,
+	getAnnouncementDetail
+} from '../../api/former';
 // const itemCount = countStorage.get()
 
 export default {
   data() {
     return {
-      msg: 'Welcome baby now! yes',
       start: 1,
       remain: 10,
       itemCount: 100,
@@ -38,9 +58,23 @@ export default {
       item: stock_item,
       userInfoList: [],
       activeTabs: "iChoice",
+      tabPosition: "top",
     }
   },
   methods: {
+    handleClick() {
+      console.log("handleClick-tabs")
+    },
+    defClick() {
+      console.log("defClick!!!!!@!@!@@")
+      var code = 'sh000001'
+      var cost = 50
+      var count = 50
+			getStockByCode(code).then(res => {
+				let stockObj = getStockDetail({res, code, cost, count})
+        console.log("stockObj:" + JSON.stringify(stockObj))
+      })
+    },
     loadInitData() {
       this.insertStorage()
       for (let i = 0; i < this.itemCount; i += 1) {
@@ -79,4 +113,12 @@ export default {
 </script>
 
 <style>
+.el-tabs__header {
+    margin: 0 0 2px;
+}
+.el-tabs__item {
+    padding: 0px 5px;
+}
+</style>
+<style scoped>
 </style>
