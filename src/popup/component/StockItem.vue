@@ -1,14 +1,29 @@
 <template>
-  <div class="item" :style="itemStyle">
+  <div class="item">
+    <div class="top"></div>
+    <div class="stockInfo">
+      <span class="name">{{stockName}}</span>
+      <span class="code">({{stockCode}})</span>
+    </div>
   </div>
 </template>
 
 <script>
-  import {getQuery} from './util'
+  import {
+    getQuery
+  } from './util'
 
   export default {
     name: 'Item',
     props: {
+      stockName: {
+        type: String,
+        default: ""
+      },
+      stockCode: {
+        type: Number,
+        default: 0
+      },
       height: {
         type: Number,
         default: 0
@@ -20,13 +35,20 @@
       variable: Boolean,
       info: {
         type: Object,
-        default: () => ({
-        })
+        default: () => ({})
       }
     },
     data() {
       return {
         avatar: getQuery('avatar') !== null
+      }
+    },
+    computed: {
+      itemStyle() {
+        return {
+          'height': `${this.height}px`,
+          'line-height': `${this.height}px`
+        }
       }
     },
     computed: {
@@ -52,21 +74,37 @@
       }
     }
   }
+
 </script>
 
 <style lang="less">
   .item {
     box-sizing: border-box;
     display: flex;
-    @media (max-width: 640px) {
-      -webkit-user-select: none;
-      user-select: none;
+    height: 34px;
+    border-bottom: 1px solid #A9A9A9;
+  }
+
+  .top {
+    width: 30px;
+  }
+
+  .stockInfo {
+    height: 30px;
+    width: 60px;
+    flex-wrap: wrap;
+
+    .name {
+      font-size: 12px;
+      color: #36c;
+      margin: 0 auto;
     }
-    // &:hover {
-    //     background-color: #f0f8ff;
-    // }
-    .index {
-      flex: 1;
-      text-align: center;
+
+    .code {
+      font-size: 6px;
+      color: gray;
+      margin: 0 auto;
     }
+  }
+
 </style>
