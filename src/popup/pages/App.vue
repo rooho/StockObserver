@@ -1,10 +1,10 @@
 <template>
-  <div class="popup-style">
+  <div class="popup_style">
     <el-tabs class="el_tabs" v-model="activeTabs" :tab-position="tabPosition" @tab-click="handleClick">
       <el-tab-pane label="我的自选" name="iChoice">
-        <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
+        <draggable class="stock_list" v-model="myArray" @start="drag=true" @end="drag=false">
           <div v-for="element in myArray" :key="element.id">
-            <stock_item stockName="青岛海尔" stockCode="600690" />
+            <stock_item stockName="青岛海尔" stockCode="600690" currentPrice="20.91"/>
           </div>
         </draggable>
       </el-tab-pane>
@@ -59,27 +59,21 @@
         userInfoList: [],
         activeTabs: "iChoice",
         tabPosition: "top",
-        myArray: [{
-            name: "abc"
-          },
-          {
-            name: "efg"
-          },
-          {
-            name: "4343454554656"
-          },
-          {
-            name: "广东富豪方大同和法国"
-          },
-          {
-            name: "7856567876856788765"
-          },
-          {
-            name: "8900000000000000000"
-          },
-          {
-            name: "88888888888个人投入广告费"
-          },
+        myArray: [{},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
         ],
       }
     },
@@ -139,5 +133,10 @@
   }
 
 </style>
-<style scoped>
+
+<style lang="less">
+  .stock_list {
+    height: 300px;
+  }
+
 </style>
