@@ -1,38 +1,46 @@
 <template>
-  <div class="item" :style="itemStyle">
-    <div class="index">
-      #{{ index }}
-    </div>
-    <div class="card">
-      <div class="card-avatar"
-           :class="{'no-avatar': !avatar}"
-           :style="{'background-color': !avatar && info.color}"
-      >
-        <span v-if="!avatar">{{ getAbbrName(info.name) }}</span>
-        <img v-else class="card-avatar-img" :src="info.avatar" alt="AVATAR">
+  <el-row>
+    <el-col :span="1">
+      <div class="grid-content bg-purple"></div>
+    </el-col>
+    <el-col :span="4">
+      <div class="stockInfo">
+        <div class="name">{{stockName}}</div>
+        <div class="code">({{stockCode}})</div>
       </div>
-      <div class="card-info">
-        <div class="card-info-item name" :style="{color: info.color}">
-          {{ info.name }}
-        </div>
-        <div class="card-info-item time">
-          Registered: {{ info.time }}
-        </div>
-      </div>
-      <div v-if="variable" class="card-height">
-        {{ height }}px
-      </div>
-    </div>
-  </div>
+    </el-col>
+    <el-col :span="4">
+      <div class="grid-content bg-purple"></div>
+    </el-col>
+    <el-col :span="2">
+      <div class="grid-content bg-purple-light"></div>
+    </el-col>
+    <el-col :span="4">
+      <div class="grid-content bg-purple"></div>
+    </el-col>
+    <el-col :span="6">
+      <div class="grid-content bg-purple-light"></div>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
-  import {getQuery} from './util'
+  import {
+    getQuery
+  } from './util'
 
   export default {
     name: 'Item',
     props: {
-      height: {
+      stockName: {
+        type: String,
+        default: ""
+      },
+      stockCode: {
+        type: Number,
+        default: 0
+      },
+      currentPrice: {
         type: Number,
         default: 0
       },
@@ -43,25 +51,12 @@
       variable: Boolean,
       info: {
         type: Object,
-        default: () => ({
-          name: '',
-          time: '',
-          avatar: '',
-          color: ''
-        })
+        default: () => ({})
       }
     },
     data() {
       return {
         avatar: getQuery('avatar') !== null
-      }
-    },
-    computed: {
-      itemStyle() {
-        return {
-          'height': `${this.height}px`,
-          'line-height': `${this.height}px`
-        }
       }
     },
     methods: {
@@ -79,101 +74,56 @@
       }
     }
   }
+
 </script>
 
 <style lang="less">
-  .item {
-    box-sizing: border-box;
-    display: flex;
-    @media (max-width: 640px) {
-      -webkit-user-select: none;
-      user-select: none;
+  .el-row {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
     }
-    // &:hover {
-    //     background-color: #f0f8ff;
-    // }
-    .index {
-      flex: 1;
-      text-align: center;
+  }
+
+  .el-col {
+    border-radius: 4px;
+  }
+
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+
+  .bg-purple {
+    background: #d3dce6;
+  }
+
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+
+  .grid-content {
+    border-radius: 4px;
+    min-height: 32px;
+  }
+
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
+
+  .stockInfo {
+    text-align: center;
+    font-family: "微软雅黑";
+
+    .name {
+      font-size: 15px;
+      color: #36c;
     }
 
-    .card {
-      position: relative;
-      flex: 4;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px dashed #cecece;
-      @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
-        border-bottom: 0.5px solid #cccccc;
-      }
-
-      &-avatar {
-        width: 40px;
-        height: 40px;
-        background: #efefef;
-        color: #4169e1;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 40px;
-
-        &.no-avatar {
-          background: #ff6347;
-          color: #ffffff;
-        }
-
-        &-img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-        }
-      }
-
-      &-info {
-        display: flex;
-        flex-direction: column;
-        // height: 100%;
-        padding-left: 40px;
-        @media (max-width: 640px) {
-          padding-left: 20px;
-        }
-
-        &-item {
-          flex: 1;
-          height: 50%;
-          line-height: 1;
-          position: relative;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          max-width: 300px;
-          overflow: hidden;
-          @media (max-width: 640px) {
-            max-width: 180px;
-          }
-
-          &.name {
-            padding-bottom: 3px;
-          }
-
-          &.time {
-            padding-top: 3px;
-            color: #a9a9a9;
-          }
-        }
-      }
-
-      &-height {
-        position: absolute;
-        right: 30px;
-        font-style: italic;
-        color: #999;
-        font-weight: 100;
-        font-family: sans-serif;
-        font-size: 12px;
-        @media (max-width: 375px) {
-          right: 10px;
-        }
-      }
+    .code {
+      font-size: 12px;
+      color: gray;
     }
   }
 </style>

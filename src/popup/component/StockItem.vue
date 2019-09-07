@@ -87,7 +87,7 @@
     font-family: Monospace;
 
     .name {
-      font-size: 13px;
+      font-size: 12px;
       color: #36c;
     }
 
