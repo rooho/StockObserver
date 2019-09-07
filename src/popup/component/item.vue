@@ -37,7 +37,7 @@
         default: ""
       },
       stockCode: {
-        type: Number,
+        type: String,
         default: 0
       },
       currentPrice: {

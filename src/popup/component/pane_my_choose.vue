@@ -1,11 +1,9 @@
 <template>
-  <el-tab-pane label="我的自选" name="iChoice">
-    <draggable class="stock_list" v-model="myArray" @start="drag=true" @end="drag=false">
-      <div v-for="element in myArray" :key="element.id">
-        <stock_item stockName="青岛海尔" stockCode="600690" currentPrice="20.91" />
-      </div>
-    </draggable>
-  </el-tab-pane>
+  <draggable class="stock_list" v-model="myArray" @start="drag=true" @end="drag=false">
+    <div v-for="element in myArray" :key="element.id">
+      <stock_item stockName="青岛海尔" :stockCode="stockCode" :currentPrice="price"/>
+    </div>
+  </draggable>
 </template>
 
 <script>
@@ -21,7 +19,8 @@
         itemCount: 100,
         itemSize: 30,
         height: 300,
-        item: stock_item,
+        stockCode: 600690,
+        price: 20.91,
         userInfoList: [],
         myArray: [{},
           {},
