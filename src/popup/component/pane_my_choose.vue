@@ -19,7 +19,7 @@
         itemCount: 100,
         itemSize: 30,
         height: 300,
-        stockCode: 600690,
+        stockCode: "600690",
         price: 20.91,
         userInfoList: [],
         myArray: [{},
