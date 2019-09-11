@@ -1,7 +1,10 @@
 <template>
   <draggable class="stock_list" v-model="myArray" @start="drag=true" @end="drag=false">
     <div v-for="element in myArray" :key="element.id">
-      <stock_item stockName="青岛海尔" :stockCode="stockCode" :currentPrice="price"/>
+      <stock_item
+        :stockName="element.stockName"
+        :stockCode="element.stockCode"
+        :currentPrice="element.price"/>
     </div>
   </draggable>
 </template>
@@ -19,14 +22,28 @@
         itemCount: 100,
         itemSize: 30,
         height: 300,
-        stockCode: 600690,
-        price: 20.91,
         userInfoList: [],
-        myArray: [{},
-          {},
-          {},
-          {},
-          {},
+        myArray: [
+          {
+            stockName: "青岛海尔",
+            stockCode: "600690",
+            price: 20.91,
+          },
+          {
+            stockName: "XD中国平安",
+            stockCode: "601318",
+            price: 91.91,
+          },
+          {
+            stockName: "厦门港务",
+            stockCode: "000905",
+            price: 7.92,
+          },
+          {
+            stockName: "青岛港",
+            stockCode: "601298",
+            price: 8.13,
+          },
         ],
       }
     },
